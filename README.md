@@ -488,3 +488,73 @@ js代码
 ### 3.效果图 ###
 
 ![Alt text](images/list.png "列表")
+
+
+## 九、进度条、滑块及开关 ##
+
+### 1.进度条 ###
+
+	<div id="demo1" class="mui-progressbar">
+	    <span></span>
+	</div>
+
+初始化
+
+	mui('#demo1').progressbar({progress:20}).show();
+
+progressbar初始化逻辑：  
+
+检查当前容器(container控件)自身是否包含.mui-progressbar类：   
+
+当前容器包含.mui-progressbar类，则以当前容器为目标控件，直接显示进度；   
+
+否则，检查当前容器的直接孩子节点是否包含.mui-progressbar类，若存在，则以遍历到的第一个含有.mui-progressbar类的孩子节点为目标控件，显示进度；    
+
+若当前容器的直接孩子节点，均不含.mui-progressbar类,则自动创建进度条控件；    
+
+更改显示进度条: 
+
+	mui(container).progressbar().setProgress(50);
+
+关闭进度条
+
+	mui(container).progressbar().hide();
+
+
+备注：关闭进度条一般用于动态创建（DOM中预先未定义）的进度条，调用hide方法后，会直接删掉对应的DOM节点；若已提前创建好DOM节点的进度条，调用hide方法无效；
+
+### 2.滑块 ###
+
+	<div class="mui-input-row mui-input-range" style="margin-top: 50px;">
+		<label for="">Range</label>
+		<input type="range" name="" id="" min="0" max="100"/>
+	</div>
+
+### 3.switch开关 ###
+
+	<div class="mui-switch" style="margin-top: 30px"; id="mySwitch">
+		<div class="mui-switch-handle"></div>
+	</div>
+
+默认打开状态 只需要在mui-switch节点上添加类 mui-active     
+
+简洁模式  需要在mui-switch节点上添加类 mui-switch-mini     
+
+蓝色开关控件  需要在mui-switch节点上添加类mui-switch-blue   
+
+
+开关的事件监听
+
+	document.getElementById("mySwitch").addEventListener("toggle",function(event){
+	    if(event.detail.isActive){
+	        mui.toast("你启动了开关");
+		}else{
+		    mui.toast("你关闭了开关");  
+		}
+	});
+
+
+
+### 4.效果图 ###
+
+![Alt text](images/progressBar.png "进度条")
