@@ -313,3 +313,89 @@ js代码
 ### 2.效果图 ###
 
 ![Alt text](images/datepicker.gif "时间选择器")  
+
+
+## 六、对话框和表单 ##
+
+### 1.mui.alert()普通提醒 ###
+
+参数
+
+	message     Type:string 提示框上显示的内容
+	title       Type:string 提示框显示的标题
+	btnValue    Type:string 提示框按钮的内容
+    callback    Type:Function 提示框关闭后的回调函数
+    type        Value:'div' 是否使用h5绘制的对话框
+
+代码
+
+	mui.alert('欢迎使用mui','Hello','yes',function(){
+		mui.toast('您刚关闭了警告框');
+	});
+
+
+### 2.mui.confirm()消息提示框 ###
+
+参数
+
+	message     Type:string 提示框上显示的内容
+	title       Type:string 提示框显示的标题
+	btnValue    Type:string 提示框按钮的内容
+    callback    Type:Function 提示框关闭后的回调函数
+    type        Value:'div' 是否使用h5绘制的对话框
+
+代码
+
+	var btnArray = ['取消', '确定'];
+	mui.confirm('真的要删除吗？','Hi...',new Arr('否','是'),funct({
+	   if(e.index == 1){mui.toast('是');}else{mui.toast('否');}
+	});
+
+### 3.mui.prompt（）输入框 ###
+
+参数
+
+	message       Type: String 提示对话框上显示的内容
+	placeholder   Type: String 编辑框显示的提示文字
+	title         Type: String 提示对话框上显示的标题
+	btnValue      Type: Array 提示对话框上按钮显示的内容
+	callback      Type: Function提示对话框上关闭后的回调函数
+	type         Value: 'div' 是否使用h5绘制的对话框
+
+代码
+
+	var btnArray=['取消','确定'];
+	mui.prompt('请输入您的姓名','Hi...',new Array('取消','确定'),function(e){
+		if(e.index==1){
+			mui.toast(e.value);
+		}else{
+			mui.toast('您取消了输入');
+		}
+	});
+
+### 4.表单元素 ###
+
+所有包含在mui-input-row类中的input，textarea等元素都将被默认设置宽度属性为100%，将label元素和上述控件包裹在mui-input-group中可获得最好的排列
+
+	<form class="mui-input-group">
+		<div class="mui-input-row">
+			<label for="">用户名</label>
+			<input type="text" class="mui-input-clear" name="username" id="" value="" placeholder="请输入用户名"/>
+		</div>
+		<div class="mui-input-row">
+			<label for="">密码</label>
+			<input type="password" class="mui-input-password" placeholder="请输入密码" />
+		</div>
+		<div class="mui-input-row mui-search">
+			<input type="search" class="mui-input-clear" placeholder="搜索" />
+		</div>
+		<div class="mui-button-row">
+			<button type="button" class="mui-btn mui-btn-primary">提交</button>
+			<button type="button" class="mui-btn mui-btn-danger">取消</button>
+		</div>
+	</form>
+
+
+### 5.效果图 ###
+
+![Alt text](images/dialog_input.gif "对话框")
