@@ -399,3 +399,54 @@ js代码
 ### 5.效果图 ###
 
 ![Alt text](images/dialog_input.gif "对话框")
+
+
+## 七、轮播组件 ##
+
+### 1.轮播组件 ###
+
+轮播组件是mui提供的一个核心组件，在该核心组件的基础上，衍生除了图片轮播，可拖动式图文表格，可拖动式选项卡，左右滑动9宫格组件等。
+
+示例代码
+
+	<div class="mui-content">
+		<div class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<!--循环轮播-->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href=""><img src="../images/4.jpg"/></a>
+				</div>
+				<div class="mui-slider-item"><a href=""><img src="../images/1.jpg"/></a></div>
+				<div class="mui-slider-item"><a href=""><img src="../images/2.jpg"/></a></div>
+				<div class="mui-slider-item"><a href=""><img src="../images/3.jpg"/></a></div>
+				<div class="mui-slider-item"><a href=""><img src="../images/4.jpg"/></a></div>
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href=""><img src="../images/1.jpg"/></a>
+				</div>
+			</div>
+			<!--添加小圆点-->
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+	</div>
+
+js代码
+
+	<script type="text/javascript">
+		mui.plusReady(function(){
+			var gallery=mui('.mui-slider');
+			gallery.slider({
+				interval:3000  //自动播放周期 0为不自动播放
+			});
+		});
+		document.querySelector('.mui-slider').addEventListener('slide',function(event){
+			mui.toast('滑动到第'+(event.detail.slideNumber+1)+'张了');
+		});
+	</script>
+
+
+### 2.效果图 ###
+
+![Alt text](images/slide.gif "轮播组件")
