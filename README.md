@@ -450,3 +450,41 @@ js代码
 ### 2.效果图 ###
 
 ![Alt text](images/slide.gif "轮播组件")
+
+## 八、列表 ##
+
+### 1.普通列表 ###
+
+
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell">Item1 <span class="mui-badge">1</span></li>
+		<li class="mui-table-view-cell">Item2 <span class="mui-badge mui-badge-success">2</span></li>
+		<li class="mui-table-view-cell">Item3 <span class="mui-badge mui-badge-warning">3</span></li>
+		<li class="mui-table-view-cell">Item4 <span class="mui-badge mui-badge-primary">4</span></li>
+		<li class="mui-table-view-cell">Item5 <span class="mui-badge mui-badge-royal">5</span></li>
+	</ul>
+
+### 2.图文列表 ###
+
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;"></a>
+			<img class="mui-media-object mui-pull-left" src="../images/1.jpg" alt="" />
+			<div class="mui-media-body">
+				幸福
+				<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+			</div>
+		</li>
+		<li class="mui-table-view-cell mui-media">
+			<a href="javascript:;"></a>
+			<img class="mui-media-object mui-pull-left" src="../images/2.jpg" alt="" />
+			<div class="mui-media-body">
+				木屋
+				<p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+			</div>
+		</li>
+	</ul>
+
+### 3.效果图 ###
+
+![Alt text](images/list.png "列表")
