@@ -164,3 +164,96 @@ actionsheet一般从底部弹出，显示一系列可供用户选择的操作，
 
 
 ![Alt text](images/actionSheet_badge.png "操作表和数字角标")
+
+
+## 四、获取单选框和复选框的值 ##
+
+### 1.获取复选框的值 ###
+
+	<div class="mui-input-row mui-checkbox">
+		<label for="">英语</label>
+		<input type="checkbox" value="English" name="language" />
+	</div>
+	<div class="mui-input-row mui-checkbox">
+		<label for="">法语</label>
+		<input type="checkbox" value="Franch" name="language" />
+	</div>
+	<div class="mui-input-row mui-checkbox mui-left">
+		<label for="">日语</label>
+		<input type="checkbox" value="Japanese" name="language" />
+	</div>
+	<button id="button" onclick="getCheckBoxValue()">获取复选框的值</button>
+
+ js代码如下
+
+	function getCheckBoxValue(){
+		var ck=document.getElementsByName('language')
+		var checkVal=[];
+		for(i=0;i<ck.length;i++){
+			if(ck[i].checked){
+				checkVal.push(ck[i].value);
+			}
+		}
+		mui.toast(checkVal);
+	}
+
+### 2.获取单选框的值 ###
+
+	<div class="mui-input-row mui-radio">
+		<label for="">星期一</label>
+		<input type="radio" name="weeks" value="Mon"/>
+	</div>
+	<div class="mui-input-row mui-radio">
+		<label for="">星期二</label>
+		<input type="radio" name="weeks" value="Tue"/>
+	</div>
+	<div class="mui-input-row mui-radio">
+		<label for="">星期日</label>
+		<input type="radio" name="weeks" value="Sun"/>
+	</div>
+	<button class="mui-btn mui-btn-success" onclick="getRadioValue()" >获取单选框的值</button>
+
+js代码如下
+
+	function getRadioValue(){
+		var radio=document.getElementsByName('weeks');
+		var checkVal=null;
+		for(i=0;i<radio.length;i++){
+			if(radio[i].checked){
+				checkVal=radio[i].value;
+			}
+		}
+		mui.toast(checkVal);
+	}
+
+3.列表式单选控件
+
+	<div style="margin-top: 20px;">
+		<ul class="mui-table-view mui-table-view-radio">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">1</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">2</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">3</a>
+			</li>
+		</ul>
+	</div>
+
+js代码如下
+
+	var list=document.querySelector('.mui-table-view-radio');
+	list.addEventListener('selected',function(e){
+		mui.toast("当前选中的为"+e.detail.el.innerText);
+	});
+
+### 4.效果图 ###
+
+![Alt text](images/getCheckbox.png "复选框值获取")  
+
+![Alt text](images/getRadio.png "单选框值获取")  
+
+
+![Alt text](images/radioList.png "单选框值获取")  
