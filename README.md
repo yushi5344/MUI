@@ -257,3 +257,59 @@ js代码如下
 
 
 ![Alt text](images/radioList.png "单选框值获取")  
+
+
+## 五、时间选择器 ##
+
+### 1.选择日期 ###
+
+	<div class="mui-content">
+		<div style="padding:15px;">
+	        <button id='pickDateBtn' type="button" class="mui-btn">选择日期</button>
+	    </div>
+	    <div style="padding:15px;">
+	        <button id='pickTimeBtn' type="button" class="mui-btn">选择时间</button>
+	    </div>
+	</div>
+
+js代码
+
+
+	document.getElementById('pickDateBtn').addEventListener('tap',function(){
+		var dDate=new Date();
+		//设置当前日期 不设置默认为今日日期
+		dDate.setFullYear(2017,1,1);
+		var minDate=new Date();
+		minDate.setFullYear(2010,0,1);
+		var maxDate=new Date();
+		maxDate.setFullYear(2019,11,31);
+		plus.nativeUI.pickDate(function(e){
+			var d=e.date;
+			mui.toast("您选择的日期是"+d.getFullYear()+"年"+(d.getMonth()+1)+"月"+d.getDate()+"日");
+		},function(e){
+			mui.toast('您没有选择日期');
+		},{
+			title:'请选择日期',
+			date:dDate,
+			minDate:minDate,
+			maxDate:maxDate
+		});
+	});
+	document.getElementById('pickTimeBtn').addEventListener('tap',function(){
+		var dTime=new Date();
+		dTime.setHours(6,1);
+		plus.nativeUI.pickTime(function(e){
+			var d =e.date;
+			mui.toast("您选择的时间是："+d.getHours()+":"+d.getMinutes());
+		},function(){
+			mui.toast('您没有选择时间');
+		},{
+			title:'请选择时间',
+			is24Hour:true,
+			time:dTime
+		});
+	});
+
+### 2.效果图 ###
+
+![Alt text](images/datepicker.gif "时间选择器")  
