@@ -98,3 +98,69 @@
 		<button type="button" class="mui-btn mui-btn-danger mui-btn-outlined">红色</button>
 		<button type="button" class="mui-btn mui-btn-royal mui-btn-outlined">紫色</button>
 	</div>
+
+### 3.效果图 ###
+
+![Alt text](images/accordin_button.png "折叠面板和按钮")
+
+
+## 三、操作表和数字角标 ##
+
+### 1.操作表 ###
+
+actionsheet一般从底部弹出，显示一系列可供用户选择的操作，actionSheet是从popover控件基础上演变而来，实际上就是一个固定在底部弹出的popover，因此dom结构和popover类似，只需要在含.mui-popover类的节点上添加mui-popover-bottom、mui-popover-action类
+
+	<div class="mui-content">
+		<div style="padding:20px;">
+	    	<input type="button" class="mui-btn-blue" value="上传图片" onclick="showPop();" />
+	    </div>    
+	</div>
+	<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+		<ul class="mui-table-view">
+		  <li class="mui-table-view-cell">
+		    <a href="#">拍照</a>
+		  </li>
+		  <li class="mui-table-view-cell">
+		    <a href="#">從文件夾中選擇</a>
+		  </li>
+		</ul>
+		<ul class="mui-table-view">
+		  <li class="mui-table-view-cell">
+		    <a href="#sheet1"><b>取消</b></a>
+		  </li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		function showPop(){
+			mui('#sheet1').popover('toggle');
+		}
+	</script>
+
+### 2.数字角标 ###
+
+数 字角标一般和其它控件（列表、9宫格、选项卡等）配合使用，用于进行数量提示。 角标的核心类是.mui-badge，默认为实心灰色背景；同时，mui还内置了蓝色（blue）、绿色(green)、黄色(yellow)、红色 (red)、紫色(purple)五种色系的数字角标
+
+	<div style="margin-top: 20px;">
+		<span class="mui-badge">1</span>
+		<span class="mui-badge mui-badge-primary">2</span>
+		<span class="mui-badge mui-badge-success">3</span>
+		<span class="mui-badge mui-badge-warning">4</span>
+		<span class="mui-badge mui-badge-danger">5</span>
+		<span class="mui-badge mui-badge-royal">6</span>
+	</div>
+
+如果不需要底色，则添加类mui-badge-inverted
+
+	<div style="margin-top: 20px;">
+		<span class="mui-badge mui-badge-inverted">1</span>
+		<span class="mui-badge mui-badge-primary mui-badge-inverted">2</span>
+		<span class="mui-badge mui-badge-success mui-badge-inverted">3</span>
+		<span class="mui-badge mui-badge-warning mui-badge-inverted">4</span>
+		<span class="mui-badge mui-badge-danger mui-badge-inverted">5</span>
+		<span class="mui-badge mui-badge-royal mui-badge-inverted">6</span>
+	</div>
+
+### 3.效果图 ###
+
+
+![Alt text](images/actionSheet_badge.png "操作表和数字角标")
