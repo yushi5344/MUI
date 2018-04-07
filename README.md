@@ -606,3 +606,171 @@ mui默认的蒙版遮罩使用.mui-backdrop类定义（如下代码），若需�
 ### 3.样式 ###
 
 ![Alt text](images/cardview.png "卡片视图")
+
+
+## 十一、新窗口的打开及页面间的数据传递 ##
+
+### 1.加载子窗口 ###
+
+父页面代码
+
+	<body>
+	<script src="../js/mui.min.js"></script>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">加载子页面</h1>
+		</header>
+	</body>
+	<script type="text/javascript">
+			mui.init({
+				subpages:[{
+					url:'sub.html',
+					id :'sub.html',
+					styles:{
+						top:'45px',
+						bottom:'0px',
+					}
+				}]
+			});
+	</script>
+
+
+sub.html页面
+
+
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-header mui-card-media">
+					<img src="../images/1.jpg"/>
+					<div class="mui-media-body">
+						小M
+						<p>发表于2018-4-6</p>
+					</div>
+				</div>
+				<div class="mui-card-content">
+					<p>
+						人生中有欢喜 <br />
+						难免亦常有泪 <br />
+						我地大家<br />
+						在狮子山下相遇上<br />
+						总算是欢笑多于唏嘘<br />
+					</p>
+				</div>
+				<div class="mui-card-footer">
+					<p>黄霑    狮子山下</p>
+				</div>
+			</div>
+		</div>
+	</body>
+
+
+### 2.打开新页面 ###
+
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">打开新页面</h1>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" id="phone">
+				<span class="mui-icon mui-icon-phone"></span>
+				<span class="mui-tab-label">电话</span>
+			</a>
+			<a class="mui-tab-item">
+				<span class="mui-icon mui-icon-email"></span>
+				<span class="mui-tab-label">邮件</span>
+			</a>
+			<a class="mui-tab-item">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">设置</span>
+			</a>
+		</nav>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				document.getElementById('phone').addEventListener('tap',function(){
+					mui.openWindow({
+						url:'phone.html',
+						id:'phone.html',
+					});
+				});
+			});
+		</script>
+	</body>
+
+
+phone.html页面
+
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">拨打电话</h1>
+	</header>
+	<div class="mui-content">
+	    12345678907
+	</div>
+
+
+### 3.数据传递 ###
+
+数据发送页面   
+
+	<div class="mui-content">
+	    <ul class="mui-table-view">
+	    	<li class="mui-table-view-cell" onclick="transData();"><a >数据传递</a></li>
+	    </ul>
+	</div>
+	<script type="text/javascript">
+		function transData(){
+			mui.openWindow({
+				url    : 'transData.html',
+				id     : 'transData.html',
+				extras : {'name':'小明','age':18}
+			});
+		}
+	</script>
+
+
+数据接收页面
+
+
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">数据接收页面</h1>
+	</header>
+	<div class="mui-content">
+	    <form class="mui-input-group">
+	    	<div class="mui-input-row">
+	    		<label for="">用户名</label>
+	    		<input type="text" name="username" id="username" value="" />
+	    	</div>
+	    	<div class="mui-input-row">
+	    		<label for="">年龄</label>
+	    		<input type="number" name="age" id="age"/>
+	    	</div>
+	    </form>
+	</div>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			var sData=plus.webview.currentWebview();
+			var username=mui('#username');
+			username[0].value=sData.name;
+			document.getElementById('age').value=sData.age;
+		});
+	</script>
+
+4.动态演示效果
+
+![Alt text](images/loadpage.gif "页面加载及数据传递")
