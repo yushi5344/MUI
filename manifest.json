@@ -17,6 +17,9 @@
 		"url": "http://www.dcloud.io"
 	},
 	"permissions": {
+		"Barcode": {
+            "description": "二维码"
+        },
         "Cache": {
             "description": "管理应用缓存"
         },

@@ -1110,3 +1110,96 @@ js代码，使用ajax交互
 
 
 ![Alt text](images/dial.png "拨打电话")
+
+
+十五、二维码扫描
+
+	<div class="mui-content">
+		<form class="mui-input-group">
+			<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-success"id="scan">扫一扫</button>
+				<button type="button" class="mui-btn mui-btn-warning"id="scan2">从相册选择</button>
+			</div>
+			<div class="mui-input-row">
+				<label for="">扫描结果</label>
+				<input type="text" name="result" id="result"/>
+			</div>
+		</form>
+	</div>
+	<div style="width:100%; height:100%; margin: auto; top:0; left: 0; position: fixed; display: none; z-index: 10;" id="scanContainer"></div>
+	<script src="../js/mui.min.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+		mui.init({
+			swipeBack: true
+		});
+		mui.plusReady(function() {
+			mui("#scan")[0].addEventListener('tap', function() {
+				// 扫描二维码
+				document.getElementById("scanContainer").style.display = "block";
+				var barScan = new plus.barcode.Barcode("scanContainer");
+				//barScan.start(); 开始扫描
+				barScan.start({
+					conserve: true,
+					filename: "_doc/barcode/"
+				}); // 可以配置扫描后保存的路径 
+				//条码扫描成功事件
+				barScan.onmarked = function(type, code, file) {
+					switch(type){
+				    	case plus.barcode.QR:
+				    	type = 'QR';
+				    	break;
+				    	case plus.barcode.EAN13:
+				    	type = 'EAN13';
+				    	break;
+				    	case plus.barcode.EAN8:
+				    	type = 'EAN8';
+				    	break;
+				    	default:
+				    	type = '其它'+type;
+				    	break;
+				    }
+					var result = "type:" + type + ",code:" + code;
+					mui('#result')[0].value=result;
+					//关闭
+					barScan.close();
+					document.getElementById("scanContainer").style.display = "none";
+				};
+				barScan.onerror = function() {
+					mui.toast("扫描失败");
+				}
+			});
+	
+			// 识别本地的二维码
+			mui("#scan2")[0].addEventListener('tap', function() {
+				plus.gallery.pick(function(path) {
+					plus.barcode.scan(path, function(type, code, file) {
+						switch(type){
+					    	case plus.barcode.QR:
+					    	type = 'QR';
+					    	break;
+					    	case plus.barcode.EAN13:
+					    	type = 'EAN13';
+					    	break;
+					    	case plus.barcode.EAN8:
+					    	type = 'EAN8';
+					    	break;
+					    	default:
+					    	type = '其它'+type;
+					    	break;
+					    }
+						var result = "type:" + type + ",code:" + code;
+						mui('#result')[0].value=result;
+					}, function(error) {
+						mui.alert('无法识别图片');
+					});
+				}, function(err) {
+					mui.alert('Failed:' + err.message);
+				});
+			});
+		});
+	</script>
+
+演示
+
+
+![Alt text](images/barcode.gif "二维码扫描")
