@@ -771,6 +771,162 @@ phone.html页面
 		});
 	</script>
 
-4.动态演示效果
+### 4.预加载页面 ###
+
+所谓的预加载技术就是在用户尚未触发页面跳转时，提前创建目标页面，这样当用户跳转时，就可以立即进行页面切换，节省创建新页面的时间，提升app使用体验。mui提供两种方式实现页面预加载。     
+
+
+方式一：通过mui.init方法中的preloadPages参数进行配置.     
+
+	mui.init({
+	    preloadPages:[{
+	      url:prelaod-page-url,
+	      id:preload-page-id,
+	      styles:{},//窗口参数
+	      extras:{},//自定义扩展参数
+	      subpages:[{},{}]//预加载页面的子页面
+	    }],
+	    preloadLimit:5//预加载窗口数量限制(一旦超出,先进先出)默认不限制
+	});
+
+
+该种方案使用简单、可预加载多个页面，但不会返回预加载每个页面的引用，若要获得对应webview引用，还需要通过plus.webview.getWebviewById方式获得；另外，因为mui.init是异步执行，执行完mui.init方法后立即获得对应webview引用，可能会失败，例如如下代码：     
+
+	mui.init({
+	    preloadPages:[{
+	      url:'list.html',
+	      id:'list'
+	    }]
+	});
+
+方式二：通过mui.preload方法预加载.   
+
+	var page = mui.preload({
+	    url:new-page-url,
+	    id:new-page-id,//默认使用当前页面的url作为id
+	    styles:{},//窗口参数
+	    extras:{}//自定义扩展参数
+	});
+
+
+通过mui.preload()方法预加载，可立即返回对应webview的引用，但一次仅能预加载一个页面；若需加载多个webview，则需多次调用mui.preload()方法；  
+
+
+### 5.动态演示效果 ###
 
 ![Alt text](images/loadpage.gif "页面加载及数据传递")
+
+
+## 十二、事件绑定及自定义事件  ##
+
+### 1.绑定单个事件 ###
+
+	<button class="mui-btn mui-btn-danger"id="button" >绑定单个事件</button>
+	<script type="text/javascript">
+		document.getElementById('button').addEventListener('tap',function(){
+			mui.toast('监听到这个事件了');
+		});
+	</script>
+
+### 2.绑定多个事件 ###
+
+	<div style="margin-top: 20px;">
+		<ul class="mui-table-view" id="mui-tab">
+			<li class="mui-table-view-cell">小明</li>
+			<li class="mui-table-view-cell">小花</li>
+			<li class="mui-table-view-cell">小萌</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+	mui.plusReady(function(){
+		mui('#mui-tab').on('tap','li',function(){
+			var html=this.innerHTML;
+			mui.toast(html);
+		});
+		//mui('.mui-table-view').off('tap','li');//事件取消
+		
+	});
+	</script>
+
+
+### 3.自动触发 ###
+
+
+	<button class="mui-btn mui-btn-success" id='btn'>自动点击</button>
+	<script type="text/javascript">
+		var btn=document.getElementById('btn');
+		btn.addEventListener('tap',function(){
+			mui.toast('自动点击');
+		});
+		mui.trigger(btn,'tap');
+	</script>
+
+
+### 4.手势事件 ###
+
+	点击 	
+	tap 		单击屏幕
+	doubletap 	双击屏幕
+
+	长按 	
+	longtap 	长按屏幕
+	hold 		按住屏幕
+	release 	离开屏幕
+
+	滑动 	
+	swipeleft 	向左滑动
+	swiperight 	向右滑动
+	swipeup 	向上滑动
+	swipedown 	向下滑动
+
+	拖动 	
+	dragstart 	开始拖动
+	drag 		拖动中
+	dragend 	拖动结束
+
+
+### 5.自定义事件 ###
+
+在父页面
+
+
+	<div style="margin-top: 20px;">
+		<ul class="mui-table-view" id="mui-tab-view">
+			<li class="mui-table-view-cell">新闻1</li>
+			<li class="mui-table-view-cell">新闻2</li>
+			<li class="mui-table-view-cell">新闻3</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		mui.plusReady(function(){
+			var preloadpage=mui.preload({url:'news.html',id:'news.html'});
+			mui('#mui-tab-view').on('tap','li',function(){
+				mui.fire(preloadpage,'newspage',{html:this.innerHTML});
+				mui.openWindow({id:'news.html'});
+			});
+		});
+	</script>
+
+
+在子页面接收参数
+
+
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			window.addEventListener('newspage',function(event){
+				var title=mui('.mui-title')[0];
+				title.innerHTML=event.detail.html;
+			});
+		});
+	</script>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">标题</h1>
+	</header>
+
+
+### 5.动态演示效果 ###
+
+![Alt text](images/eventBind.gif "事件绑定")
