@@ -930,3 +930,131 @@ phone.html页面
 ### 5.动态演示效果 ###
 
 ![Alt text](images/eventBind.gif "事件绑定")
+
+
+## 十三、APP与服务器之间的交互原理、MUI Ajax使用 ##
+
+html代码
+
+	<div class="mui-content">
+	    <div  class="mui-input-group">
+	    	<div class="mui-button-row">
+	    		<button class="mui-btn mui-btn-success" id='btn1'>get请求</button>
+	    		<button class="mui-btn mui-btn-warning" id='btn2'>POST请求</button>
+	    		<button class="mui-btn mui-btn-primary" id='btn3'>PUT请求</button>
+	    		<button class="mui-btn mui-btn-danger" id='btn4'>DETETE请求</button>
+	    	</div>
+	    	<div class="mui-input-row">
+	    		<label for="">请求结果</label>
+	    	    <input type="text" name="result" id="result" value="" />
+	    	</div>
+	    </div>
+	</div>
+
+js代码，使用ajax交互
+
+
+	<script type="text/javascript">
+		mui.init();
+		mui.plusReady(function(){
+			document.getElementById('btn1').addEventListener('tap',function(){
+				mui.ajax({
+					url:'http://47.95.218.48/MUI',
+					type:'GET',
+					success:function(data){
+						mui('#result')[0].value=data.msg;
+					},
+					error:function(xhr,type,errorThrown){
+						mui.toast(type);
+					}
+				});
+			});
+			
+			document.getElementById('btn2').addEventListener('tap',function(){
+				mui.ajax({
+					url:'http://47.95.218.48/MUI',
+					type:'POST',
+					data:{test:'123'},
+					success:function(data){
+						mui('#result')[0].value=data.msg;
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(errorThrown);
+					}
+				});
+			});
+			document.getElementById('btn3').addEventListener('tap',function(){
+				mui.ajax({
+					url:'http://47.95.218.48/MUI/3',
+					type:'PUT',
+					data:{test:'123'},
+					success:function(data){
+						mui('#result')[0].value=data.msg;
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(errorThrown);
+					}
+				});
+			});
+			document.getElementById('btn4').addEventListener('tap',function(){
+				mui.ajax({
+					url:'http://47.95.218.48/MUI/3',
+					type:'DELETE',
+					success:function(data){
+						mui('#result')[0].value=data.msg;
+					},
+					error:function(xhr,type,errorThrown){
+						console.log(errorThrown);
+					}
+				});
+			});
+		});
+	</script>
+
+
+后端代码(PHP)
+
+
+	public function index()
+	{
+	    //
+	    $data=[
+	        'status'=>1,
+	        'msg'=>'index方法请求成功'
+	    ];
+	    return $data;
+	}
+	
+	public function store(Request $request)
+	{
+	    //
+	    $data=[
+	        'status'=>1,
+	        'msg'=>'POST方式请求成功'
+	    ];
+	    return $data;
+	}
+	public function update(Request $request, $id)
+	{
+	    //
+	    $data=[
+	        'status'=>1,
+	        'msg'=>'PUT方式请求成功'
+	    ];
+	    return $data;
+	}
+	
+	public function destroy($id)
+	{
+	    //
+	    $data=[
+	        'status'=>1,
+	        'msg'=>'DELETE请求成功'
+	    ];
+	    return $data;
+	}
+
+
+### 动态演示效果 ###
+
+![Alt text](images/ajax.png "ajax交互")
