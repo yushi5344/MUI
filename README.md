@@ -1058,3 +1058,55 @@ js代码，使用ajax交互
 ### 动态演示效果 ###
 
 ![Alt text](images/ajax.png "ajax交互")
+
+
+### 十四、获取设备信息 ###
+
+### 1.获取设备信息 ###
+
+
+	"设备型号：" + plus.device.model;
+	"设备厂商：" + plus.device.vendor;
+	"IMEI：" + plus.device.imei;
+	"UUID: " + plus.device.uuid;
+	"屏幕分辨率：" + plus.screen.resolutionWidth*plus.screen.scale + " x " + plus.screen.resolutionHeight*plus.screen.scale
+	"DPI：" + plus.screen.dpiX + " x " + plus.screen.dpiY;
+
+
+### 2.获取系统信息 ###
+
+	"名称：" + plus.os.name;
+	"版本：" + plus.os.version;
+	"语言：" + plus.os.language;
+	"厂商：" + plus.os.vendor;
+    plus.networkinfo.CONNECTION_UNKNOW = "未知";
+    plus.networkinfo.CONNECTION_NONE= "未连接网络";
+    plus.networkinfo.CONNECTION_ETHERNET = "有线网络";
+    plus.networkinfo.CONNECTION_WIFI = "WiFi网络";
+    plus.networkinfo.CONNECTION_CELL2G = "2G蜂窝网络";
+    plus.networkinfo.CONNECTION_CELL3G = "3G蜂窝网络";
+    plus.networkinfo.CONNECTION_CELL4G = "4G蜂窝网络";
+    "网络类型：" plus.networkinfo.getCurrentType();
+
+
+### 3.设备震动 ###
+
+	plus.device.vibrate();
+
+### 4.设备蜂鸣 ###
+
+	plus.device.beep();
+
+### 5.拨打电话 ###
+
+	plus.device.dial("10086",false);
+
+### 6.动态演示效果 ###
+
+![Alt text](images/deviceinfo.png "设备信息")    
+
+
+![Alt text](images/sysinfo.png "系统信息")
+
+
+![Alt text](images/dial.png "拨打电话")

@@ -26,6 +26,9 @@
         "Contacts": {
             "description": "访问系统联系人信息"
         },
+        "Device": {
+            "description": "设备信息"
+        },
         "Events": {
             "description": "应用扩展事件"
         },
@@ -124,6 +127,6 @@
 					"xxhdpi": ""
 				}
 			}
-		}
+		},"ads":{"rp":false,"splash":false,"push":false},"adid":""
 	}
 }
