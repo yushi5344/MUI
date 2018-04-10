@@ -20,6 +20,8 @@
 						dataType:'json',
 						success:function(data){
 							mui('#result')[0].value=data.msg;
+							mui('#method')[0].value=data.method;
+							mui('#url')[0].value=data.url;
 						},
 						error:function(xhr,type,errorThrown){
 							mui.toast(type);
@@ -34,6 +36,8 @@
 						data:{test:'123'},
 						success:function(data){
 							mui('#result')[0].value=data.msg;
+							mui('#method')[0].value=data.method;
+							mui('#url')[0].value=data.url;
 						},
 						error:function(xhr,type,errorThrown){
 							console.log(errorThrown);
@@ -44,9 +48,10 @@
 					mui.ajax({
 						url:'http://47.95.218.48/MUI/3',
 						type:'PUT',
-						data:{test:'123'},
 						success:function(data){
 							mui('#result')[0].value=data.msg;
+							mui('#method')[0].value=data.method;
+							mui('#url')[0].value=data.url;
 						},
 						error:function(xhr,type,errorThrown){
 							console.log(errorThrown);
@@ -59,6 +64,8 @@
 						type:'DELETE',
 						success:function(data){
 							mui('#result')[0].value=data.msg;
+							mui('#method')[0].value=data.method;
+							mui('#url')[0].value=data.url;
 						},
 						error:function(xhr,type,errorThrown){
 							console.log(errorThrown);
@@ -74,14 +81,25 @@
 		<div class="mui-content">
 		    <div  class="mui-input-group">
 		    	<div class="mui-button-row">
-		    		<button class="mui-btn mui-btn-success" id='btn1'>get请求</button>
+		    		<button class="mui-btn mui-btn-success" id='btn1'>GET请求</button>
 		    		<button class="mui-btn mui-btn-warning" id='btn2'>POST请求</button>
-		    		<button class="mui-btn mui-btn-primary" id='btn3'>PUT请求</button>
-		    		<button class="mui-btn mui-btn-danger" id='btn4'>DETETE请求</button>
+		    		
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label for="">请求方式</label>
+		    		<input type="text" name="method" id="method"/>
+		    	</div>
+		    	<div class="mui-input-row">
+		    		<label for="">请求URL</label>
+		    		<input type="text" name="url" id="url"/>
 		    	</div>
 		    	<div class="mui-input-row">
 		    		<label for="">请求结果</label>
 		    	    <input type="text" name="result" id="result" value="" />
+		    	</div>
+		    	<div class="mui-button-row">
+		    		<button class="mui-btn mui-btn-primary" id='btn3'>PUT请求</button>
+		    		<button class="mui-btn mui-btn-danger" id='btn4'>DETETE请求</button>
 		    	</div>
 		    </div>
 		</div>
