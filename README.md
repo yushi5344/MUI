@@ -1,5 +1,15 @@
 # MUI学习 demo代码
 
+
+mui官网   
+
+<a href="http://dev.dcloud.net.cn/mui/"><img src="images/logo.jpg"></img></a>
+
+
+github   
+
+<a href="https://github.com/dcloudio/mui/"><img src="images/GitHub-Mark.png" width=50></img></a>
+
 ## 一、 项目创建、基础布局  
  
 ### 1、头部 ##
@@ -1203,3 +1213,47 @@ js代码，使用ajax交互
 
 
 ![Alt text](images/barcode.gif "二维码扫描")
+
+
+## 十六、侧滑菜单  ##
+
+
+动态演示
+
+
+![侧滑菜单](images/slideMenu.gif )
+
+## 十七、九宫格 ##
+
+动态效果图
+
+![侧滑菜单](images/grid.png )
+
+
+## 十八、分页 ##
+
+动态效果图
+
+![侧滑菜单](images/pagination.png )
+
+
+## 十九、选项卡 ##
+
+效果图
+
+
+![选项卡](images/control.png )
+
+
+
+![选项卡](images/control2.png )
+
+
+## 二十、可滑动选项卡 ##
+
+效果图
+
+
+![侧滑菜单](images/sliderSegment.gif )
+
+
