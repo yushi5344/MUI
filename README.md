@@ -1257,3 +1257,15 @@ js代码，使用ajax交互
 ![侧滑菜单](images/sliderSegment.gif )
 
 
+
+
+# 调试 #
+
+![调试](unpackage/res/markdown/tiaoshi.jpg )
+
+
+
+# 打包 #
+
+
+![打包](unpackage/res/markdown/dabao.jpg )
